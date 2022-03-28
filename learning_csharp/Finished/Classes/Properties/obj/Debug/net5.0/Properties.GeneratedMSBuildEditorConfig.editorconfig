@@ -6,3 +6,5 @@ build_property.ProjectTypeGuids =
 build_property.PublishSingleFile = 
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
+build_property.RootNamespace = Properties
+build_property.ProjectDir = /Users/Sam/code/learning-csharp/ll_joe_marini/learning_csharp/Finished/Classes/Properties/
