@@ -1,23 +1,27 @@
 using System;
 namespace ProgChallenge
 {
-    class SavingsAcct : Account
+    class SavingsAcct : BankAccount
     {
-        private decimal _interest;
         private int _withdrawalCount = 0;
+        private const decimal WITHDRAW_CHRAGE = 2.00m;
+        private const int WITHDRAW_LIMIT = 3;
         public SavingsAcct(string firstName, string lastName, decimal interest, decimal balance)
         : base(firstName, lastName, balance)
         {
-            _interest = interest;
+            InterestRate = interest;
+        }
+        public decimal InterestRate
+        {
+            get; set;
         }
 
         public void ApplyInterest()
         {
-            _balance = Balance * (1 + _interest);
+            Balance = Balance * (1 + InterestRate);
         }
         public override void Withdraw(decimal d)
         {
-            _withdrawalCount++;
             decimal extraFees = 0m;
 
             if (d > Balance)
@@ -25,13 +29,17 @@ namespace ProgChallenge
                 Console.WriteLine("Attempt to overdraw savings - denied");
                 return;
             }
-
-            if (_withdrawalCount > 3)
+            else
             {
-                Console.WriteLine("Too many withdrawls, extra fees apply");
-                extraFees += 2.00m;
+                _withdrawalCount++;
+                if (_withdrawalCount > WITHDRAW_LIMIT)
+                {
+                    Console.WriteLine("Too many withdrawls, extra fees apply");
+                    extraFees += WITHDRAW_CHRAGE;
+                }
+                base.Withdraw(d + extraFees);
             }
-            base.Withdraw(d + extraFees);
+
         }
     }
 }
