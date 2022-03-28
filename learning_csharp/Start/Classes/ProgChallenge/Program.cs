@@ -58,7 +58,7 @@ namespace ProgChallenge
 
             // try to overdraw checking - should result in extra charge
             checking.Withdraw(3000.0m);
-            
+
             // Expected output should be -385 and 988.63
             Console.WriteLine($"Checking balance is {checking.Balance:C2}");
             Console.WriteLine($"Savings balance is {saving.Balance:C2}");
